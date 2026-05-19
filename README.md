@@ -1,48 +1,54 @@
 # Teste Recipe
 
-A personal recipe curation and management website for food enthusiasts to store, organize, and discover recipes.
+A personal recipe curation and management website for storing, organizing, searching, rating, and revisiting favorite recipes.
 
-## Overview
+## Live Site
 
-Teste Recipe is a web application designed to help you maintain your personal collection of recipes while also discovering and curating new ones. Whether you're a home cook, a food blogger, or simply passionate about cooking, this platform provides an intuitive way to organize and access your culinary creations.
+GitHub Pages deployment:
 
-## Features
+https://davidateek.github.io/teste-recipe/
 
-### Planned Features
+## What the Application Does
 
-- **Recipe Storage**: Store your personal recipes with detailed ingredients, instructions, and cooking notes
-- **Recipe Curation**: Discover and save recipes from various sources
-- **Organization**: Categorize recipes by cuisine, meal type, dietary preferences, and custom tags
-- **Search & Filter**: Quickly find recipes based on ingredients, categories, or keywords
-- **Recipe Cards**: Beautiful, easy-to-read recipe cards optimized for cooking
-- **User Authentication**: Secure personal account to store and manage recipes
-- **Image Upload**: Add mouthwatering photos to your recipes
-- **Notes & Ratings**: Add personal notes and ratings to recipes
+Teste Recipe is a browser-based recipe vault. It lets you:
+
+- Create, view, edit, and delete recipes
+- Store ingredients, instructions, prep time, cook time, servings, and personal notes
+- Organize recipes by category and tags
+- Search recipes by title, description, ingredients, or instructions
+- Filter by category, tag, and minimum star rating
+- Upload recipe images from your device
+- Rate recipes from 1 to 5 stars
+
+Because this version is deployed to GitHub Pages, data is saved in the browser with `localStorage`. Recipes stay available on the same device/browser, but they are not synced across devices.
 
 ## Technology Stack
 
-*To be determined during development planning phase*
+- React
+- Vite
+- CSS
+- Browser `localStorage`
+- GitHub Pages
 
-## Getting Started
+## Local Development
 
-*Installation and setup instructions will be added as development progresses*
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Deploy
+
+```bash
+npm run deploy
+```
 
 ## Project Status
 
-🚧 **In Planning Phase** - Repository created, project planning in progress
-
-## Contributing
-
-This is a personal project, but suggestions and feedback are welcome!
-
-## License
-
-*To be determined*
-
-## Contact
-
-Project maintained by [@davidateek](https://github.com/davidateek)
-
----
-
-*Last updated: May 19, 2026*
+The first deployable MVP is implemented as a static React application. Future iterations can add the originally planned Node.js/Express API, PostgreSQL database, authentication, and cloud image storage.
