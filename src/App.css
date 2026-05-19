@@ -212,6 +212,15 @@ textarea {
   margin: 0;
 }
 
+.source-link {
+  margin-top: 18px;
+}
+
+.source-link a {
+  color: #0f766e;
+  font-weight: 800;
+}
+
 .card-topline,
 .card-actions,
 .form-footer,

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { seedRecipes } from './seedRecipes'
 import './App.css'
 
 const STORAGE_KEY = 'teste-recipe-recipes'
@@ -18,44 +19,7 @@ const emptyRecipe = {
   image: '',
 }
 
-const starterRecipes = [
-  {
-    id: crypto.randomUUID(),
-    title: 'Lemon Garlic Pasta',
-    description: 'A bright weeknight pasta with pantry staples and fresh herbs.',
-    category: 'Dinner',
-    tags: ['quick', 'vegetarian', 'comfort food'],
-    ingredients: 'Spaghetti\nGarlic\nLemon zest and juice\nParmesan\nParsley\nOlive oil',
-    instructions:
-      'Boil pasta until al dente.\nSaute garlic in olive oil.\nToss pasta with lemon, parmesan, and pasta water.\nFinish with parsley.',
-    prepTime: '10',
-    cookTime: '15',
-    servings: '4',
-    notes: 'Add chili flakes for heat.',
-    rating: 5,
-    image: '',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: crypto.randomUUID(),
-    title: 'Weekend Pancakes',
-    description: 'Fluffy pancakes for a slow breakfast.',
-    category: 'Breakfast',
-    tags: ['sweet', 'brunch'],
-    ingredients: 'Flour\nBaking powder\nMilk\nEggs\nButter\nMaple syrup',
-    instructions:
-      'Whisk dry ingredients.\nFold in wet ingredients until just combined.\nCook on a buttered griddle.\nServe warm with syrup.',
-    prepTime: '8',
-    cookTime: '12',
-    servings: '3',
-    notes: 'Rest batter for five minutes before cooking.',
-    rating: 4,
-    image: '',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-]
+const starterRecipes = seedRecipes
 
 function readRecipes() {
   const stored = localStorage.getItem(STORAGE_KEY)
@@ -63,7 +27,14 @@ function readRecipes() {
 
   try {
     const parsed = JSON.parse(stored)
-    return Array.isArray(parsed) ? parsed : starterRecipes
+    if (!Array.isArray(parsed)) return starterRecipes
+
+    const savedRecipeIds = new Set(parsed.map((recipe) => recipe.id))
+    const missingSeedRecipes = starterRecipes.filter(
+      (recipe) => !savedRecipeIds.has(recipe.id),
+    )
+
+    return [...missingSeedRecipes, ...parsed]
   } catch {
     return starterRecipes
   }
@@ -387,6 +358,15 @@ function RecipeDetail({ recipe }) {
           <h3>Personal notes</h3>
           <p>{recipe.notes}</p>
         </div>
+      ) : null}
+
+      {recipe.sourceUrl ? (
+        <p className="source-link">
+          Source:{' '}
+          <a href={recipe.sourceUrl} rel="noreferrer" target="_blank">
+            {recipe.sourceName || recipe.sourceUrl}
+          </a>
+        </p>
       ) : null}
     </section>
   )

@@ -19,8 +19,13 @@ Teste Recipe is a browser-based recipe vault. It lets you:
 - Filter by category, tag, and minimum star rating
 - Upload recipe images from your device
 - Rate recipes from 1 to 5 stars
+- Start with 20 imported Italian recipes
 
 Because this version is deployed to GitHub Pages, data is saved in the browser with `localStorage`. Recipes stay available on the same device/browser, but they are not synced across devices.
+
+## Recipe Data Attribution
+
+The starter Italian recipe collection is imported from [TheMealDB](https://www.themealdb.com/api.php). Imported recipes include source links in the recipe detail view when available.
 
 ## Technology Stack
 
